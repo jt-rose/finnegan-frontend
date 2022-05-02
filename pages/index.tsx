@@ -1,5 +1,5 @@
-import Gallery from '../components/Gallery'
+const Index = () => {
+  return <h1>Hello Finnegan!</h1>;
+};
 
-const Index = () => <Gallery />
-
-export default Index
+export default Index;
