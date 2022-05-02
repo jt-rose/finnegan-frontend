@@ -1,21 +1,32 @@
 import useSWR from "swr";
 import axios from "axios";
+import { useState } from "react";
 
 const fetcher = (url: string, body: any) => axios.post(url, body);
 
 const Login = () => {
+  const [shouldSubmit, setShouldSubmit] = useState(false);
   const { data, error } = useSWR(
-    ["http://localhost:8080/login", { username: "user", password: "password" }],
+    shouldSubmit
+      ? [
+          "http://localhost:8080/login",
+          { username: "user", password: "password" },
+        ]
+      : null,
     fetcher
   );
   if (error) {
     return <p>{`${error}`}</p>;
   }
-  if (!data) {
-    return <p>...loading</p>;
+  if (!shouldSubmit) {
+    return <button onClick={() => setShouldSubmit(true)}>submit</button>;
   }
-  console.log(data.headers.authorization.replace("Bearer ", ""));
-  return <div>{`${data.status}`}</div>;
+  if (shouldSubmit && !data) {
+    return <p>...loading</p>;
+  } else {
+    //console.log(data.headers.authorization.replace("Bearer ", ""));
+    return <div>{`${data?.status}`}</div>;
+  }
 };
 
 export default Login;
