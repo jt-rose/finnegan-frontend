@@ -2,6 +2,8 @@ import { AnimatePresence } from "framer-motion";
 import { useRouter } from "next/router";
 import { AppProps } from "next/app";
 import { QueryClient, QueryClientProvider } from "react-query";
+import { useEffect, useState } from "react";
+import { useStore } from "store/store";
 
 const queryClient = new QueryClient();
 
@@ -12,12 +14,27 @@ function handleExitComplete() {
 }
 
 function MyApp({ Component, pageProps }: AppProps) {
+  // windowLoaded status will be used
+  // to avoid sessionStorage conflicts with NextJS
+  const store = useStore();
   const router = useRouter();
+
+  useEffect(() => {
+    store.setWindowLoaded();
+    const storedToken = sessionStorage.getItem("token");
+    if (storedToken) {
+      store.setToken(storedToken);
+    }
+  }, []);
   return (
     <>
       <QueryClientProvider client={queryClient}>
         <AnimatePresence exitBeforeEnter onExitComplete={handleExitComplete}>
-          <Component {...pageProps} key={router.route} />
+          {store.windowLoaded ? (
+            <Component {...pageProps} key={router.route} />
+          ) : (
+            <p>...loading</p>
+          )}
         </AnimatePresence>
         <style>
           {`

@@ -3,15 +3,20 @@ import { post } from "query/fetchers";
 import { LOGIN_ROUTE, useLoginMutation } from "query/userController";
 import { useMutation } from "react-query";
 import { useRouter } from "next/router";
+import { useStore } from "store/store";
 
 const Login = () => {
+  const setToken = useStore((state) => state.setToken);
   const router = useRouter();
   const loginMutation = useMutation(
     (config: { username: string; password: string }) =>
       axios.post(LOGIN_ROUTE, config),
     {
       onSuccess: (data) => {
-        console.log(data.headers.authorization);
+        const token = data.headers.authorization;
+        console.log(token);
+        sessionStorage.setItem("token", token);
+        setToken(token);
         router.push("/");
       },
     }
