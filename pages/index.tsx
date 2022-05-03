@@ -5,7 +5,9 @@ import { User } from "types/User";
 import { useQuery } from "react-query";
 
 const Index = () => {
-  const { isLoading, error, data } = useGetUserQuery();
+  const { isLoading, error, data } = useGetUserQuery(
+    "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c2VyIiwiZXhwIjoxNjUxNTU1MjMwfQ.PkIW-csxAM_YhLX-VKR_Xd-se9845vSrZz-PQpLiloLPwwx_4_h4F7bi7pH3NlnV0aEDbU7fxitov_32P6Ir3g"
+  );
   //   const { data, error } = useSWR<User>(
   //     [
   //       USER_ROUTE,

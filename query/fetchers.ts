@@ -11,11 +11,15 @@ export const get = (url: string, credentials: string) => {
 };
 
 export const post = (url: string, body: any, credentials: string) => {
-  axios.post(url, body, getTokenHeader(credentials)).then((res) => res.data);
+  return axios
+    .post(url, body, getTokenHeader(credentials))
+    .then((res) => res.data);
 };
 
 export const put = (url: string, body: any, credentials: string) => {
-  axios.put(url, body, getTokenHeader(credentials)).then((res) => res.data);
+  return axios
+    .put(url, body, getTokenHeader(credentials))
+    .then((res) => res.data);
 };
 
 export const remove = (url: string, credentials: string) => {

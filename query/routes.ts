@@ -2,12 +2,11 @@
 
 import axios from "axios";
 import { useQuery } from "react-query";
+import { get } from "../query/fetchers";
 import { User } from "types/User";
 
-export const useGetUserQuery = () =>
-  useQuery<User, Error>("user", () =>
-    axios.get(USER_ROUTE).then((res) => res.data)
-  );
+export const useGetUserQuery = (credentials: string) =>
+  useQuery<User, Error>("user", () => get(USER_ROUTE, credentials));
 
 // add prod endpoint later
 const BASE_ROUTE = "http://localhost:8080";
