@@ -1,7 +1,8 @@
 import axios from "axios";
+import { User } from "types/User";
 
-export const get = (url: string, credentials: string) => {
-  return axios.get(url, {
+export const get = <T>(url: string, credentials: string) => {
+  return axios.get<T>(url, {
     headers: { Authorization: "Bearer " + credentials },
   });
 };
@@ -23,3 +24,5 @@ export const remove = (url: string, credentials: string) => {
     headers: { Authorization: "Bearer " + credentials },
   });
 };
+
+export type Fetchers = typeof get | typeof post | typeof put | typeof remove;
