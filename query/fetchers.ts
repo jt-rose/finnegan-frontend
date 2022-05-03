@@ -1,28 +1,23 @@
 import axios from "axios";
-import { User } from "types/User";
 
-export const get = <T>(url: string, credentials: string) => {
-  return axios.get<T>(url, {
-    headers: { Authorization: "Bearer " + credentials },
-  });
+// set up headers for passing jwt
+const getTokenHeader = (credentials: string) => ({
+  headers: { Authorization: "Bearer " + credentials },
+});
+
+// set up fetchers for CRUD
+export const get = (url: string, credentials: string) => {
+  return axios.get(url, getTokenHeader(credentials)).then((res) => res.data);
 };
 
 export const post = (url: string, body: any, credentials: string) => {
-  return axios.post(url, body, {
-    headers: { Authorization: "Bearer " + credentials },
-  });
+  axios.post(url, body, getTokenHeader(credentials)).then((res) => res.data);
 };
 
 export const put = (url: string, body: any, credentials: string) => {
-  return axios.put(url, body, {
-    headers: { Authorization: "Bearer " + credentials },
-  });
+  axios.put(url, body, getTokenHeader(credentials)).then((res) => res.data);
 };
 
 export const remove = (url: string, credentials: string) => {
-  return axios.delete(url, {
-    headers: { Authorization: "Bearer " + credentials },
-  });
+  return axios.delete(url, getTokenHeader(credentials));
 };
-
-export type Fetchers = typeof get | typeof post | typeof put | typeof remove;
