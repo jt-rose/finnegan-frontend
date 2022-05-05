@@ -1,5 +1,11 @@
+import { Layout } from "components/Layout";
+
 const Search = () => {
-  return <p>Search Page</p>;
+  return (
+    <Layout>
+      <p>Search Page</p>
+    </Layout>
+  );
 };
 
 export default Search;

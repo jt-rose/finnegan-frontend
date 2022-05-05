@@ -1,5 +1,11 @@
+import { Layout } from "components/Layout";
+
 const EditUser = () => {
-  return <p>Edit User Page</p>;
+  return (
+    <Layout>
+      <p>Edit User Page</p>
+    </Layout>
+  );
 };
 
 export default EditUser;

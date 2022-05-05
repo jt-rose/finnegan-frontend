@@ -5,6 +5,7 @@ import { User } from "types/User";
 import { useQuery } from "react-query";
 import { useEffect, useState } from "react";
 import { useStore } from "store/store";
+import { Layout } from "components/Layout";
 
 // const Wrapper = () => {
 //   const [loaded, setLoaded] = useState(false);
@@ -33,7 +34,11 @@ const Index = () => {
   console.log(isLoading);
   console.log("data: ", data);
   console.log("error: ", error);
-  return <h1>Hello Finnegan!</h1>;
+  return (
+    <Layout>
+      <h1>Hello Finnegan!</h1>
+    </Layout>
+  );
 };
 
 export default Index;

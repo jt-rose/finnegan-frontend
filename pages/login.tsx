@@ -4,6 +4,7 @@ import { LOGIN_ROUTE, useLoginMutation } from "query/userController";
 import { useMutation } from "react-query";
 import { useRouter } from "next/router";
 import { useStore } from "store/store";
+import { Layout } from "components/Layout";
 
 const Login = () => {
   const setToken = useStore((state) => state.setToken);
@@ -25,7 +26,11 @@ const Login = () => {
   const handleLogin = () => {
     loginMutation.mutate({ username: "user", password: "password" });
   };
-  return <p onClick={handleLogin}>login</p>;
+  return (
+    <Layout>
+      <p onClick={handleLogin}>login</p>
+    </Layout>
+  );
 };
 
 export default Login;
