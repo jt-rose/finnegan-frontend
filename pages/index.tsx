@@ -36,7 +36,9 @@ const Index = () => {
   console.log("error: ", error);
   return (
     <Layout>
-      <h1>Hello Finnegan!</h1>
+      <p className="text-3xl font-bold underline text-sky-500">
+        Hello Finnegan!
+      </p>
     </Layout>
   );
 };
