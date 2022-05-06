@@ -6,6 +6,8 @@
     "start": "next start"
   },
   "dependencies": {
+    "@headlessui/react": "^1.6.1",
+    "@heroicons/react": "^1.0.6",
     "axios": "^0.27.2",
     "framer-motion": "latest",
     "next": "latest",
