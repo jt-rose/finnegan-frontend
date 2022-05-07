@@ -1,7 +1,7 @@
 import "./App.css";
 import Navbar from "./components/Navbar";
 import { QueryClient, QueryClientProvider } from "react-query";
-import Index from "./pages/Index";
+import { Login } from "@mui/icons-material";
 
 const queryClient = new QueryClient();
 
@@ -10,7 +10,7 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <div>
         <Navbar />
-        <Index />
+        <Login />
       </div>
     </QueryClientProvider>
   );
