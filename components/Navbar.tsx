@@ -1,41 +1,83 @@
-import Link from "next/link";
-//import { Menu } from "@headlessui/react";
-import { ChartBarIcon, CalendarIcon } from "@heroicons/react/outline";
-import { ProfileMenu } from "./ProfileMenu";
+import * as React from "react";
+import AppBar from "@mui/material/AppBar";
+import Box from "@mui/material/Box";
+import Toolbar from "@mui/material/Toolbar";
+import Typography from "@mui/material/Typography";
+import IconButton from "@mui/material/IconButton";
+import MenuIcon from "@mui/icons-material/Menu";
+import AccountCircle from "@mui/icons-material/AccountCircle";
+import Switch from "@mui/material/Switch";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import FormGroup from "@mui/material/FormGroup";
+import MenuItem from "@mui/material/MenuItem";
+import Menu from "@mui/material/Menu";
 
 export const Navbar = () => {
-  return (
-    <nav className="flex justify-around bg-blue-400 p-2 px-4 rounded-lg m-2">
-      {/* <Example /> */}
-      <Link href="/">
-        <button className="flex hover:bg-teal-500 rounded-full hover:cursor-pointer">
-          <CalendarIcon
-            className="text-slate-50 p-2 ht-10 w-10 hover:bg-teal-500 rounded-full"
-            stroke="rgb(248 250 252)"
-          />{" "}
-          <p className="text-slate-50 font-bold  pr-2 pt-2">Daily</p>
-        </button>
-      </Link>
-      <Link href="/stats">
-        <button className="flex hover:bg-teal-500 rounded-full hover:cursor-pointer">
-          <ChartBarIcon
-            className="text-slate-50 p-2 ht-10 w-10 hover:bg-teal-500 rounded-full"
-            stroke="rgb(248 250 252)"
-          />{" "}
-          <p className="text-slate-50 font-bold  pr-2 pt-2">Stats</p>
-        </button>
-      </Link>
+  const [auth, setAuth] = React.useState(true);
+  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 
-      <ProfileMenu />
-      {/* <Link href="/settings">
-        <div className="flex hover:bg-teal-500 rounded-full hover:cursor-pointer">
-          <UserCircleIcon
-            className="text-slate-50 p-2 ht-10 w-10 hover:bg-teal-500 rounded-full"
-            stroke="rgb(248 250 252)"
-          />{" "}
-          <p className="text-slate-50 font-bold  pr-2 pt-2">Account</p>
-        </div>
-      </Link> */}
-    </nav>
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setAuth(event.target.checked);
+  };
+
+  const handleMenu = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+  return (
+    <Box sx={{ flexGrow: 1 }}>
+      <AppBar position="static">
+        <Toolbar>
+          <IconButton
+            size="large"
+            edge="start"
+            color="inherit"
+            aria-label="menu"
+            sx={{ mr: 2 }}
+          >
+            <MenuIcon />
+          </IconButton>
+          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+            Photos
+          </Typography>
+          {auth && (
+            <div>
+              <IconButton
+                size="large"
+                aria-label="account of current user"
+                aria-controls="menu-appbar"
+                aria-haspopup="true"
+                onClick={handleMenu}
+                color="inherit"
+              >
+                <AccountCircle />
+              </IconButton>
+              <Menu
+                id="menu-appbar"
+                anchorEl={anchorEl}
+                anchorOrigin={{
+                  vertical: "top",
+                  horizontal: "right",
+                }}
+                keepMounted
+                transformOrigin={{
+                  vertical: "top",
+                  horizontal: "right",
+                }}
+                open={Boolean(anchorEl)}
+                onClose={handleClose}
+              >
+                <MenuItem onClick={handleClose}>Profile</MenuItem>
+                <MenuItem onClick={handleClose}>My account</MenuItem>
+              </Menu>
+            </div>
+          )}
+        </Toolbar>
+      </AppBar>
+    </Box>
   );
 };
