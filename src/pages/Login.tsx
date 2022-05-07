@@ -9,6 +9,7 @@ function Login() {
       axios.post("http://localhost:8080/login", config),
     {
       onSuccess: (data) => {
+        console.log(data);
         const token = data.headers.authorization;
         console.log(token);
         //sessionStorage.setItem("token", token);
