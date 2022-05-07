@@ -1,3 +1,4 @@
+import { useGetTransactionsQuery } from "../queries/transactionController";
 import { useGetUserQuery } from "../queries/userController";
 
 const Index = () => {
@@ -8,6 +9,11 @@ const Index = () => {
     //"eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c2VyIiwiZXhwIjoxNjUxNTU1MjMwfQ.PkIW-csxAM_YhLX-VKR_Xd-se9845vSrZz-PQpLiloLPwwx_4_h4F7bi7pH3NlnV0aEDbU7fxitov_32P6Ir3g"
     token
   );
+
+  const res = useGetTransactionsQuery(token);
+  console.log("transaction: ", res.isLoading);
+  console.log("transaction data: ", res.data);
+  console.log("transaction error: ", res.error);
 
   console.log(isLoading);
   console.log("data: ", data);
