@@ -1,9 +1,8 @@
-import "../styles/globals.css";
 import { AnimatePresence } from "framer-motion";
 import { useRouter } from "next/router";
 import { AppProps } from "next/app";
 import { QueryClient, QueryClientProvider } from "react-query";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useStore } from "store/store";
 
 const queryClient = new QueryClient();
