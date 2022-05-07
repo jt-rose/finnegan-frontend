@@ -1,8 +1,9 @@
 import { useMutation } from "react-query";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 function Login() {
-  //const router = useRouter();
+  const navigate = useNavigate();
   const loginMutation = useMutation(
     (config: { username: string; password: string }) =>
       axios.post("http://localhost:8080/login", config),
@@ -11,7 +12,7 @@ function Login() {
         const token = data.headers.authorization;
         console.log(token);
         //sessionStorage.setItem("token", token);
-        //router.push("/");
+        navigate("/");
       },
     }
   );
