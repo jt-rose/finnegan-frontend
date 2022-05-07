@@ -1,7 +1,7 @@
 import { useMutation } from "react-query";
 import axios from "axios";
 
-function Index() {
+function Login() {
   //const router = useRouter();
   const loginMutation = useMutation(
     (config: { username: string; password: string }) =>
@@ -23,4 +23,4 @@ function Index() {
   return <p onClick={handleLogin}>login</p>;
 }
 
-export default Index;
+export default Login;
